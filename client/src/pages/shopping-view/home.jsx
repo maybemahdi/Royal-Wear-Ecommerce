@@ -167,8 +167,9 @@ function ShoppingHome() {
             Shop by category
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-            {categoriesWithIcon.map((categoryItem) => (
+            {categoriesWithIcon.map((categoryItem, idx) => (
               <Card
+                key={idx}
                 onClick={() =>
                   handleNavigateToListingPage(categoryItem, "category")
                 }
@@ -188,8 +189,9 @@ function ShoppingHome() {
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-8">Shop by Brand</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {brandsWithIcon.map((brandItem) => (
+            {brandsWithIcon.map((brandItem, idx) => (
               <Card
+                key={idx}
                 onClick={() => handleNavigateToListingPage(brandItem, "brand")}
                 className="cursor-pointer hover:shadow-lg transition-shadow"
               >
@@ -210,8 +212,9 @@ function ShoppingHome() {
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {productList && productList.length > 0
-              ? productList.map((productItem) => (
+              ? productList.map((productItem, idx) => (
                   <ShoppingProductTile
+                    key={idx}
                     handleGetProductDetails={handleGetProductDetails}
                     product={productItem}
                     handleAddtoCart={handleAddtoCart}

@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+require("dotenv").config();
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const authRouter = require("./routes/auth/auth-routes");
@@ -19,7 +20,7 @@ const commonFeatureRouter = require("./routes/common/feature-routes");
 //create a separate file for this and then import/use that file here
 
 mongoose
-  .connect("db_url")
+  .connect("mongodb://localhost:27017/ecommerce")
   .then(() => console.log("MongoDB connected"))
   .catch((error) => console.log(error));
 
@@ -55,5 +56,9 @@ app.use("/api/shop/search", shopSearchRouter);
 app.use("/api/shop/review", shopReviewRouter);
 
 app.use("/api/common/feature", commonFeatureRouter);
+
+app.get("/", async (req, res) => {
+  res.send("Ecommerce App Running")
+})
 
 app.listen(PORT, () => console.log(`Server is now running on port ${PORT}`));
