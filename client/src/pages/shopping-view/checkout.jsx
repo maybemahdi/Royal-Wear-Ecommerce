@@ -82,7 +82,7 @@ function ShoppingCheckout() {
     };
 
     dispatch(createNewOrder(orderData)).then((data) => {
-      console.log(data, "sangam");
+      console.log(data, "mahdi");
       if (data?.payload?.success) {
         setIsPaymemntStart(true);
       } else {
@@ -108,7 +108,7 @@ function ShoppingCheckout() {
         <div className="flex flex-col gap-4">
           {cartItems && cartItems.items && cartItems.items.length > 0
             ? cartItems.items.map((item) => (
-                <UserCartItemsContent cartItem={item} />
+                <UserCartItemsContent key={item?._id} cartItem={item} />
               ))
             : null}
           <div className="mt-8 space-y-4">
@@ -122,6 +122,9 @@ function ShoppingCheckout() {
               {isPaymentStart
                 ? "Processing Paypal Payment..."
                 : "Checkout with Paypal"}
+            </Button>
+            <Button className="w-full mt-2 bg-rose-500 transition-all duration-300 hover:bg-rose-600">
+              bKash Payment
             </Button>
           </div>
         </div>

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Button } from "../ui/button";
 import { Card, CardContent, CardFooter } from "../ui/card";
 
@@ -10,12 +11,12 @@ function AdminProductTile({
 }) {
   return (
     <Card className="w-full max-w-sm mx-auto">
-      <div>
-        <div className="relative">
+      <div className="relative group">
+        <div className="relative overflow-hidden rounded-t-lg">
           <img
             src={product?.image}
             alt={product?.title}
-            className="w-full h-[300px] object-cover rounded-t-lg"
+            className="w-full h-[300px] object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
           />
         </div>
         <CardContent>

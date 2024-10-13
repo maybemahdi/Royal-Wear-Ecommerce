@@ -1,8 +1,10 @@
+/* eslint-disable react/prop-types */
 import {
   BadgeCheck,
   ChartNoAxesCombined,
   LayoutDashboard,
   ShoppingBasket,
+  Users,
 } from "lucide-react";
 import { Fragment } from "react";
 import { useNavigate } from "react-router-dom";
@@ -27,6 +29,12 @@ const adminSidebarMenuItems = [
     path: "/admin/orders",
     icon: <BadgeCheck />,
   },
+  {
+    id: "users",
+    label: "Users",
+    path: "/admin/manage-users",
+    icon: <Users />,
+  },
 ];
 
 function MenuItems({ setOpen }) {
@@ -41,7 +49,9 @@ function MenuItems({ setOpen }) {
             navigate(menuItem.path);
             setOpen ? setOpen(false) : null;
           }}
-          className="flex cursor-pointer text-xl items-center gap-2 rounded-md px-3 py-2 text-muted-foreground hover:bg-muted hover:text-foreground"
+          className={`flex cursor-pointer text-xl items-center gap-2 rounded-md px-3 py-2 text-muted-foreground hover:bg-muted hover:text-rose-500 hover:text-foreground transition-all duration-300 ${
+            location.pathname === menuItem.path && "text-rose-500 bg-muted"
+          }`}
         >
           {menuItem.icon}
           <span>{menuItem.label}</span>

@@ -6,7 +6,6 @@ import AdminLayout from "./components/admin-view/layout";
 import AdminDashboard from "./pages/admin-view/dashboard";
 import AdminProducts from "./pages/admin-view/products";
 import AdminOrders from "./pages/admin-view/orders";
-import AdminFeatures from "./pages/admin-view/features";
 import ShoppingLayout from "./components/shopping-view/layout";
 import NotFound from "./pages/not-found";
 import ShoppingHome from "./pages/shopping-view/home";
@@ -22,6 +21,7 @@ import PaypalReturnPage from "./pages/shopping-view/paypal-return";
 import PaymentSuccessPage from "./pages/shopping-view/payment-success";
 import SearchProducts from "./pages/shopping-view/search";
 import { Skeleton } from "./components/ui/skeleton";
+import ManageUsers from "./pages/admin-view/ManageUsers";
 
 function App() {
   const { user, isAuthenticated, isLoading } = useSelector(
@@ -71,7 +71,7 @@ function App() {
           <Route path="dashboard" element={<AdminDashboard />} />
           <Route path="products" element={<AdminProducts />} />
           <Route path="orders" element={<AdminOrders />} />
-          <Route path="features" element={<AdminFeatures />} />
+          <Route path="manage-users" element={<ManageUsers />} />
         </Route>
         <Route
           path="/shop"

@@ -18,6 +18,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
+import logo from "/public/logo.png";
 import { Avatar, AvatarFallback } from "../ui/avatar";
 import { logoutUser } from "@/store/auth-slice";
 import UserCartWrapper from "./cart-wrapper";
@@ -60,8 +61,8 @@ function MenuItems() {
         return (
           <Label
             onClick={() => handleNavigate(menuItem)}
-            className={`text-sm font-semibold cursor-pointer ${
-              isActive ? "text-blue-500" : ""
+            className={`text-sm font-semibold cursor-pointer hover:text-rose-500 ${
+              isActive ? "text-rose-500" : ""
             }`}
             key={menuItem.id}
           >
@@ -88,7 +89,7 @@ function HeaderRightContent() {
     dispatch(fetchCartItems(user?.id));
   }, [dispatch]);
 
-  console.log(cartItems, "sangam");
+  console.log(cartItems, "mahdi");
 
   return (
     <div className="flex lg:items-center lg:flex-row flex-col gap-4">
@@ -145,10 +146,10 @@ function ShoppingHeader() {
   const { isAuthenticated } = useSelector((state) => state.auth);
 
   return (
-    <header className="sticky top-0 z-[900] w-full border-b bg-background py-3 shadow-lg">
+    <header className="sticky top-0 z-40 w-full border-b bg-background py-3 shadow-lg">
       <div className="flex h-16 items-center justify-between px-4 md:px-6">
         <Link to="/shop/home" className="flex items-center gap-2">
-          <HousePlug className="h-6 w-6" />
+          <img src={logo} className="h-11 w-11" alt="Logo" />
           <span className="font-bold">Royal Jersey</span>
         </Link>
         <Sheet>
