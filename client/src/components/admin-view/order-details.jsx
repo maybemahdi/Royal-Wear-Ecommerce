@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import CommonForm from "../common/form";
 import { DialogContent } from "../ui/dialog";

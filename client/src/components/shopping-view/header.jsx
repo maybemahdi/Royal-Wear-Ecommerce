@@ -61,7 +61,7 @@ function MenuItems() {
         return (
           <Label
             onClick={() => handleNavigate(menuItem)}
-            className={`text-sm font-semibold cursor-pointer hover:text-rose-500 ${
+            className={`text-base font-semibold cursor-pointer hover:text-rose-500 ${
               isActive ? "text-rose-500" : ""
             }`}
             key={menuItem.id}

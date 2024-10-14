@@ -3,6 +3,7 @@ import { Card, CardContent, CardFooter } from "../ui/card";
 import { Button } from "../ui/button";
 import { brandOptionsMap, categoryOptionsMap } from "@/config";
 import { Badge } from "../ui/badge";
+import { ShoppingCart } from "lucide-react";
 
 function ShoppingProductTile({
   product,
@@ -71,9 +72,10 @@ function ShoppingProductTile({
         ) : (
           <Button
             onClick={() => handleAddtoCart(product?._id, product?.totalStock)}
-            className="w-full"
+            className="w-full flex gap-3 items-center"
           >
-            Add to cart
+            Add to Cart
+            <ShoppingCart />
           </Button>
         )}
       </CardFooter>
