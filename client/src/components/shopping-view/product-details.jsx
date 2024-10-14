@@ -1,4 +1,4 @@
-import { StarIcon } from "lucide-react";
+/* eslint-disable react/prop-types */
 import { Avatar, AvatarFallback } from "../ui/avatar";
 import { Button } from "../ui/button";
 import { Dialog, DialogContent } from "../ui/dialog";
@@ -88,6 +88,11 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
         toast({
           title: "Review added successfully!",
         });
+      } else {
+        toast({
+          title: data?.payload.message,
+          variant: "destructive",
+        });
       }
     });
   }
@@ -106,14 +111,14 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
 
   return (
     <Dialog open={open} onOpenChange={handleDialogClose}>
-      <DialogContent className="grid grid-cols-2 gap-8 sm:p-12 max-w-[90vw] sm:max-w-[80vw] lg:max-w-[70vw]">
-        <div className="relative overflow-hidden rounded-lg">
+      <DialogContent className="grid grid-cols-1 h-[90vh] md:grid-cols-2 gap-8 sm:p-12 max-w-[90vw] sm:max-w-[80vw] lg:max-w-[70vw] overflow-y-auto rounded-lg">
+        <div className="relative overflow-hidden rounded-lg mt-2 md:mt-0">
           <img
             src={productDetails?.image}
             alt={productDetails?.title}
-            width={600}
-            height={600}
-            className="aspect-square w-full object-cover"
+            // width={600}
+            // height={600}
+            className="aspect-square w-full object-cover h-full"
           />
         </div>
         <div className="">
@@ -170,7 +175,7 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
             <div className="grid gap-6">
               {reviews && reviews.length > 0 ? (
                 reviews.map((reviewItem) => (
-                  <div className="flex gap-4">
+                  <div key={reviewItem?._id} className="flex gap-4">
                     <Avatar className="w-10 h-10 border">
                       <AvatarFallback>
                         {reviewItem?.userName[0].toUpperCase()}
@@ -202,6 +207,7 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
                 />
               </div>
               <Input
+                className="outline-none"
                 name="reviewMsg"
                 value={reviewMsg}
                 onChange={(event) => setReviewMsg(event.target.value)}

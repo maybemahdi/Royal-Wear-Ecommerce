@@ -58,7 +58,7 @@ app.use("/api/shop/review", shopReviewRouter);
 app.use("/api/common/feature", commonFeatureRouter);
 
 app.get("/", async (req, res) => {
-  res.send("Ecommerce App Running")
+  res.send("E-Commerce App is Running")
 })
 
 app.listen(PORT, () => console.log(`Server is now running on port ${PORT}`));
