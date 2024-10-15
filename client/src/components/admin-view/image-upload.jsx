@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { FileIcon, UploadCloudIcon, XIcon } from "lucide-react";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
@@ -46,11 +47,12 @@ function ProductImageUpload({
   }
 
   async function uploadImageToCloudinary() {
+    console.log("imageFile:", imageFile)
     setImageLoadingState(true);
     const data = new FormData();
     data.append("my_file", imageFile);
     const response = await axios.post(
-      "${import.meta.env.VITE_API_KEY}/api/admin/products/upload-image",
+      `${import.meta.env.VITE_API_KEY}/api/admin/products/upload-image`,
       data
     );
     console.log(response, "response");

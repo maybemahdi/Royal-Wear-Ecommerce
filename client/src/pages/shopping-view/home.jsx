@@ -46,7 +46,7 @@ function ShoppingHome() {
 
   const [openDetailsDialog, setOpenDetailsDialog] = useState(false);
 
-  const { user } = useSelector((state) => state.auth);
+  const { user, isAuthenticated } = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -67,6 +67,12 @@ function ShoppingHome() {
   }
 
   function handleAddtoCart(getCurrentProductId) {
+    if (!isAuthenticated) {
+      return toast({
+        title: "Kindly Login First to Purchase Product",
+        variant: "destructive",
+      });
+    }
     dispatch(
       addToCart({
         userId: user?.id,
@@ -112,7 +118,7 @@ function ShoppingHome() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <div className="relative w-full h-[600px] overflow-hidden">
+      <div className="relative w-full h-[700px] overflow-hidden">
         {featureImageList && featureImageList.length > 0
           ? featureImageList.map((slide, index) => (
               <img
