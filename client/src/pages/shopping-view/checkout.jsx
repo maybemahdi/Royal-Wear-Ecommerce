@@ -114,17 +114,17 @@ function ShoppingCheckout() {
           <div className="mt-8 space-y-4">
             <div className="flex justify-between">
               <span className="font-bold">Total</span>
-              <span className="font-bold">${totalCartAmount}</span>
+              <span className="font-bold">৳{totalCartAmount}</span>
             </div>
           </div>
           <div className="mt-4 w-full">
-            <Button onClick={handleInitiatePaypalPayment} className="w-full">
+            <Button title="Not Available in your country" disabled onClick={handleInitiatePaypalPayment} className="w-full disabled:cursor-not-allowed disabled:bg-gray-400">
               {isPaymentStart
                 ? "Processing Paypal Payment..."
                 : "Checkout with Paypal"}
             </Button>
             <Button className="w-full mt-2 bg-rose-500 transition-all duration-300 hover:bg-rose-600">
-              bKash Payment
+              Cash on Delivery
             </Button>
           </div>
         </div>

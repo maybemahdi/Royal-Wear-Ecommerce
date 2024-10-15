@@ -111,8 +111,9 @@ function AdminProducts() {
       </div>
       <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-4">
         {productList && productList.length > 0
-          ? productList.map((productItem) => (
-              <AdminProductTile
+          ? productList.map((productItem, idx) => (
+            <AdminProductTile
+              key={idx}
                 setFormData={setFormData}
                 setOpenCreateProductsDialog={setOpenCreateProductsDialog}
                 setCurrentEditedId={setCurrentEditedId}

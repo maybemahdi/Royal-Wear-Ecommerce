@@ -58,11 +58,10 @@ export const addProductFormElements = [
     name: "category",
     componentType: "select",
     options: [
-      { id: "men", label: "Men" },
-      { id: "women", label: "Women" },
-      { id: "kids", label: "Kids" },
+      { id: "jersey", label: "Jersey" },
+      { id: "trouser", label: "Trouser" },
+      { id: "tshirt", label: "T-Shirt" },
       { id: "accessories", label: "Accessories" },
-      { id: "footwear", label: "Footwear" },
     ],
   },
   {
@@ -120,11 +119,10 @@ export const shoppingViewHeaderMenuItems = [
 ];
 
 export const categoryOptionsMap = {
-  men: "Men",
-  women: "Women",
-  kids: "Kids",
+  jersey: "Jersey",
+  trouser: "Trouser",
+  tshirt: "T-Shirt",
   accessories: "Accessories",
-  footwear: "Footwear",
 };
 
 export const brandOptionsMap = {
@@ -138,11 +136,10 @@ export const brandOptionsMap = {
 
 export const filterOptions = {
   category: [
-    { id: "men", label: "Men" },
-    { id: "women", label: "Women" },
-    { id: "kids", label: "Kids" },
+    { id: "jersey", label: "Jersey" },
+    { id: "trouser", label: "Trouser" },
+    { id: "tshirt", label: "T-Shirt" },
     { id: "accessories", label: "Accessories" },
-    { id: "footwear", label: "Footwear" },
   ],
   brand: [
     { id: "nike", label: "Nike" },
