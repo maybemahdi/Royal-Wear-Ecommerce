@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import CommonForm from "../common/form";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
@@ -56,6 +57,7 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
             toast({
               title: "Address updated successfully",
             });
+            window.location.reload();
           }
         })
       : dispatch(
@@ -115,8 +117,9 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
     <Card>
       <div className="mb-5 p-3 grid grid-cols-1 sm:grid-cols-2  gap-2">
         {addressList && addressList.length > 0
-          ? addressList.map((singleAddressItem) => (
-              <AddressCard
+          ? addressList.map((singleAddressItem, idx) => (
+            <AddressCard
+              key={idx}
                 selectedId={selectedId}
                 handleDeleteAddress={handleDeleteAddress}
                 addressInfo={singleAddressItem}

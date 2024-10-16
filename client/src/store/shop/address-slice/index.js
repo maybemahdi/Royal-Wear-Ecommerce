@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -10,7 +11,7 @@ export const addNewAddress = createAsyncThunk(
   "/addresses/addNewAddress",
   async (formData) => {
     const response = await axios.post(
-      "${import.meta.env.VITE_API_KEY}/api/shop/address/add",
+      `${import.meta.env.VITE_API_KEY}/api/shop/address/add`,
       formData
     );
 

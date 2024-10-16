@@ -28,6 +28,12 @@ const OrderSchema = new mongoose.Schema({
   orderUpdateDate: Date,
   paymentId: String,
   payerId: String,
+  deliveryChargeDetails: {
+    paymentType: String,
+    senderNumber: String,
+    transactionID: String,
+    deliveryCharge: Number,
+  },
 });
 
 module.exports = mongoose.model("Order", OrderSchema);

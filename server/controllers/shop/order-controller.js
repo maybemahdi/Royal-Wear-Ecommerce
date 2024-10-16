@@ -90,7 +90,7 @@ const createOrder = async (req, res) => {
     console.log(e);
     res.status(500).json({
       success: false,
-      message: "Some error occured!",
+      message: "Some error occurred!",
     });
   }
 };
@@ -142,7 +142,26 @@ const capturePayment = async (req, res) => {
     console.log(e);
     res.status(500).json({
       success: false,
-      message: "Some error occured!",
+      message: "Some error occurred!",
+    });
+  }
+};
+
+const createCodOrder = async (req, res) => {
+  try {
+    const data = req?.body;
+    const newlyCreatedOrder = new Order(data);
+      const result = await newlyCreatedOrder.save();
+      res.status(201).json({
+        success: true,
+        message: "Order created successfully!",
+        orderId: result._id,
+      });
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({
+      success: false,
+      message: "Some error occurred!",
     });
   }
 };
@@ -204,4 +223,5 @@ module.exports = {
   capturePayment,
   getAllOrdersByUser,
   getOrderDetails,
+  createCodOrder,
 };
