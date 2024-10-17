@@ -2,7 +2,7 @@ const Order = require("../../models/Order");
 
 const getAllOrdersOfAllUsers = async (req, res) => {
   try {
-    const orders = await Order.find({});
+    const orders = await Order.find({}).sort({ orderDate: -1 });
 
     if (!orders.length) {
       return res.status(404).json({
@@ -65,6 +65,13 @@ const updateOrderStatus = async (req, res) => {
     }
 
     await Order.findByIdAndUpdate(id, { orderStatus });
+
+
+    if (orderStatus === "delivered") {
+      await Order.findByIdAndUpdate(id, { paymentStatus: "completed" });
+    } else {
+      await Order.findByIdAndUpdate(id, { paymentStatus: "pending" });
+    }
 
     res.status(200).json({
       success: true,

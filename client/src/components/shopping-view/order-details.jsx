@@ -9,7 +9,7 @@ function ShoppingOrderDetailsView({ orderDetails }) {
   const { user } = useSelector((state) => state.auth);
 
   return (
-    <DialogContent className="sm:max-w-[600px]">
+    <DialogContent className="sm:max-w-[600px] h-[90vh] overflow-y-auto">
       <div className="grid gap-6">
         <div className="grid gap-2">
           <div className="flex mt-6 items-center justify-between">
@@ -47,6 +47,22 @@ function ShoppingOrderDetailsView({ orderDetails }) {
                 {orderDetails?.orderStatus}
               </Badge>
             </Label>
+          </div>
+          <Separator />
+          <h3 className="text-lg font-bold mt-3">Delivery Charge Details</h3>
+          <div className="flex items-center justify-between">
+            <p className="font-medium">Delivery Charge</p>
+            <Label>
+              ৳{orderDetails?.deliveryChargeDetails?.deliveryCharge}
+            </Label>
+          </div>
+          <div className="flex items-center justify-between">
+            <p className="font-medium">Payment Type</p>
+            <Label>{orderDetails?.deliveryChargeDetails?.paymentType}</Label>
+          </div>
+          <div className="flex items-center justify-between">
+            <p className="font-medium">Transaction ID</p>
+            <Label>{orderDetails?.deliveryChargeDetails?.transactionID}</Label>
           </div>
         </div>
         <Separator />

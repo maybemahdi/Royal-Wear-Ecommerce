@@ -201,7 +201,7 @@ function ShoppingCheckout() {
   };
   const deliveryCharge =
     currentSelectedAddress && currentSelectedAddress?.city === "Sylhet"
-      ? 60
+      ? 80
       : 120;
 
   if (approvalURL) {

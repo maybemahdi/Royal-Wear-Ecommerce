@@ -83,6 +83,22 @@ function AdminOrderDetailsView({ orderDetails }) {
               </Badge>
             </Label>
           </div>
+          <Separator />
+          <h3 className="text-lg font-bold mt-3">Delivery Charge Details</h3>
+          <div className="flex items-center justify-between">
+            <p className="font-medium">Delivery Charge</p>
+            <Label>
+              ৳{orderDetails?.deliveryChargeDetails?.deliveryCharge}
+            </Label>
+          </div>
+          <div className="flex items-center justify-between">
+            <p className="font-medium">Payment Type</p>
+            <Label>{orderDetails?.deliveryChargeDetails?.paymentType}</Label>
+          </div>
+          <div className="flex items-center justify-between">
+            <p className="font-medium">Transaction ID</p>
+            <Label>{orderDetails?.deliveryChargeDetails?.transactionID}</Label>
+          </div>
         </div>
         <Separator />
         <div className="grid gap-4">

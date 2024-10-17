@@ -86,8 +86,10 @@ function HeaderRightContent() {
   }
 
   useEffect(() => {
-    dispatch(fetchCartItems(user?.id));
-  }, [dispatch]);
+    if (user) {
+      dispatch(fetchCartItems(user?.id));
+    }
+  }, [dispatch, user]);
 
   console.log(cartItems, "mahdi");
   if (!isAuthenticated)
