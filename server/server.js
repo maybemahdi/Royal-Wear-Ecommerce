@@ -16,6 +16,7 @@ const shopSearchRouter = require("./routes/shop/search-routes");
 const shopReviewRouter = require("./routes/shop/review-routes");
 
 const commonFeatureRouter = require("./routes/common/feature-routes");
+const User = require("./models/User");
 
 //create a database connection -> u can also
 //create a separate file for this and then import/use that file here
@@ -30,7 +31,12 @@ const PORT = process.env.PORT || 5000;
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://royal-wear.vercel.app"],
+    origin: [
+      "http://localhost:5173",
+      "https://royal-wear.vercel.app",
+      "https://royalwear.top",
+      "https://www.royalwear.top",
+    ],
     methods: ["GET", "POST", "DELETE", "PUT"],
     allowedHeaders: [
       "Content-Type",
@@ -60,7 +66,17 @@ app.use("/api/shop/review", shopReviewRouter);
 app.use("/api/common/feature", commonFeatureRouter);
 
 app.get("/", async (req, res) => {
-  res.send("E-Commerce App is Running")
-})
+  res.send("E-Commerce App is Running");
+});
+
+app.get("/api/getPaymentNumber", async (req, res) => {
+  const email = "savagewizerd@gmail.com";
+  const result = await User.findOne({ email });
+  if (!result) {
+    res.send({ paymentNumber: "01732659971" });
+  } else {
+    res.send({ paymentNumber: result?.paymentNumber, message: "success" });
+  }
+});
 
 app.listen(PORT, () => console.log(`Server is now running on port ${PORT}`));

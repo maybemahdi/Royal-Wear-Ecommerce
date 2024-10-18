@@ -35,7 +35,7 @@ const ManageUsersView = () => {
   }, [setAllUser]);
   return (
     <div className="w-full py-10">
-      <div className="md:w-[90%] w-[100%] mx-auto">
+      <div className="md:w-[90%] w-[90%] mx-auto">
       <h1 className="text-2xl font-bold mb-5">Manage Users</h1>
         <div className="rounded-md border overflow-x-auto">
           <Table>

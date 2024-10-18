@@ -3,7 +3,7 @@ import img from "../../assets/account.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import UserCartItemsContent from "@/components/shopping-view/cart-items-content";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createNewOrder } from "@/store/shop/order-slice";
 import { useToast } from "@/components/ui/use-toast";
 import {
@@ -35,6 +35,7 @@ function ShoppingCheckout() {
   const [selectedPaymentType, setSelectedPaymentType] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isPaymentStart, setIsPaymentStart] = useState(false);
+  const [paymentNumber, setPaymentNumber] = useState(null);
   const dispatch = useDispatch();
   const { toast } = useToast();
 
@@ -52,6 +53,16 @@ function ShoppingCheckout() {
           0
         )
       : 0;
+
+  useEffect(() => {
+    const getPaymentNumber = async () => {
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_API_KEY}/api/getPaymentNumber`
+      );
+      setPaymentNumber(data?.paymentNumber);
+    };
+    getPaymentNumber();
+  }, []);
 
   function handleInitiatePaypalPayment() {
     if (cartItems.items.length === 0) {
@@ -184,7 +195,7 @@ function ShoppingCheckout() {
       `${import.meta.env.VITE_API_KEY}/api/shop/order/cod`,
       orderData
     );
-    console.log(data)
+    console.log(data);
     if (data?.success) {
       toast({
         title: "Order Successful",
@@ -286,7 +297,7 @@ function ShoppingCheckout() {
                       To confirm your order pay your Delivery Charge BDT{" "}
                       {deliveryCharge} via bKash or Nagad Send Money to{" "}
                       <span className="text-rose-500 font-semibold">
-                        01875661523
+                        {paymentNumber}
                       </span>{" "}
                       and provide transaction id and sender number here! The
                       product will be delivered within{" "}
@@ -313,6 +324,7 @@ function ShoppingCheckout() {
                         name="amount"
                         placeholder="Amount"
                         value={deliveryCharge}
+                        readOnly
                       />
                     </div>
                     <div className="w-full flex flex-col gap-3">

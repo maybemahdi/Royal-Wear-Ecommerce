@@ -19,6 +19,10 @@ const UserSchema = new mongoose.Schema({
     type: String,
     default: "user",
   },
+  paymentNumber: {
+    type: String,
+    default: null,
+  },
 });
 
 const User = mongoose.model("User", UserSchema);
