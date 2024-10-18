@@ -61,6 +61,10 @@ function ShoppingOrderDetailsView({ orderDetails }) {
             <Label>{orderDetails?.deliveryChargeDetails?.paymentType}</Label>
           </div>
           <div className="flex items-center justify-between">
+            <p className="font-medium">Sender Number</p>
+            <Label>{orderDetails?.deliveryChargeDetails?.senderNumber}</Label>
+          </div>
+          <div className="flex items-center justify-between">
             <p className="font-medium">Transaction ID</p>
             <Label>{orderDetails?.deliveryChargeDetails?.transactionID}</Label>
           </div>

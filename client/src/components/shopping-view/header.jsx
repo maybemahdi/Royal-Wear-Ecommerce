@@ -170,7 +170,7 @@ function ShoppingHeader() {
       <div className="flex h-10 md:h-16 items-center justify-between px-4 md:px-6">
         <Link to="/shop/home" className="flex items-center gap-2">
           <img src={logo} className="h-11 w-11" alt="Logo" />
-          <span className="font-bold">Royal Jersey</span>
+          <span className="font-bold">Royal Wear</span>
         </Link>
         <Sheet>
           <SheetTrigger asChild>

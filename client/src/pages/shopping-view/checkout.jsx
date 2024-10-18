@@ -211,7 +211,8 @@ function ShoppingCheckout() {
     }
   };
   const deliveryCharge =
-    currentSelectedAddress && currentSelectedAddress?.city === "Sylhet"
+    currentSelectedAddress &&
+    currentSelectedAddress?.city.toLowerCase().includes("sylhet")
       ? 80
       : 120;
 
