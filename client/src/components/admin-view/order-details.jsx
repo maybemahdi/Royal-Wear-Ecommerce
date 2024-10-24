@@ -111,10 +111,12 @@ function AdminOrderDetailsView({ orderDetails }) {
             <ul className="grid gap-3">
               {orderDetails?.cartItems && orderDetails?.cartItems.length > 0
                 ? orderDetails?.cartItems.map((item, idx) => (
-                    <li key={idx} className="flex items-center justify-between">
+                    <li key={idx} className="flex items-center flex-wrap justify-between">
                       <span>Title: {item.title}</span>
                       <span>Quantity: {item.quantity}</span>
-                      <span>Price: ৳{item.price}</span>
+                      <span>Size: {item.size}</span>
+                      <span>Price per piece: ৳{item.price}</span>
+                      <span>Total: ৳{item.price * item.quantity}</span>
                     </li>
                   ))
                 : null}

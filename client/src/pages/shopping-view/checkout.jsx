@@ -26,12 +26,14 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import axios from "axios";
+import ProductSizeSelector from "@/components/shopping-view/ProductSizeSelector";
 
 function ShoppingCheckout() {
   const { cartItems } = useSelector((state) => state.shopCart);
   const { user } = useSelector((state) => state.auth);
   const { approvalURL } = useSelector((state) => state.shopOrder);
   const [currentSelectedAddress, setCurrentSelectedAddress] = useState(null);
+  const [selectedSize, setSelectedSize] = useState("");
   const [selectedPaymentType, setSelectedPaymentType] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isPaymentStart, setIsPaymentStart] = useState(false);
@@ -39,7 +41,9 @@ function ShoppingCheckout() {
   const dispatch = useDispatch();
   const { toast } = useToast();
 
-  console.log(currentSelectedAddress, "cartItems");
+  const handleSizeChange = (e) => {
+    setSelectedSize(e.target.value);
+  };
 
   const totalCartAmount =
     cartItems && cartItems.items && cartItems.items.length > 0
@@ -146,6 +150,13 @@ function ShoppingCheckout() {
       });
       return;
     }
+    if (!selectedSize) {
+      toast({
+        title: "Please select your size.",
+        variant: "destructive",
+      });
+      return;
+    }
 
     const form = e.target;
     const senderNumber = form?.senderNumber?.value;
@@ -164,6 +175,7 @@ function ShoppingCheckout() {
             ? singleCartItem?.salePrice
             : singleCartItem?.price,
         quantity: singleCartItem?.quantity,
+        size: selectedSize,
       })),
       addressInfo: {
         addressId: currentSelectedAddress?._id,
@@ -237,6 +249,12 @@ function ShoppingCheckout() {
               ))
             : null}
           <div className="mt-8 space-y-4">
+            {cartItems?.items?.length > 0 && (
+              <ProductSizeSelector
+                selectedSize={selectedSize}
+                handleSizeChange={handleSizeChange}
+              />
+            )}
             {currentSelectedAddress && (
               <div className="flex justify-between">
                 <span className="font-bold">Delivery Charge</span>
@@ -281,7 +299,13 @@ function ShoppingCheckout() {
                         title: "Please select one address to proceed.",
                         variant: "destructive",
                       });
-
+                      return;
+                    }
+                    if (!selectedSize) {
+                      toast({
+                        title: "Please select your size.",
+                        variant: "destructive",
+                      });
                       return;
                     }
                   }}
@@ -290,7 +314,7 @@ function ShoppingCheckout() {
                   Cash on Delivery
                 </Button>
               </DialogTrigger>
-              {currentSelectedAddress && (
+              {currentSelectedAddress && selectedSize && (
                 <DialogContent>
                   <DialogHeader>
                     <DialogTitle>Confirm your Order</DialogTitle>
